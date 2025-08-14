@@ -1,51 +1,39 @@
-# Diabetes Classification using Raman Spectroscopy and Neural Networks
-This project uses Raman spectroscopy data from earlobes to build a neural network that classifies patients as diabetic or non-diabetic. The model demonstrates the potential for a non-invasive, rapid screening method for Type 2 Diabetes Mellitus (DM2).
+Project: Diabetes Classification with Raman Spectroscopy
+!(https://github.com/user-attachments/assets/eeb2feef-f00c-46e1-91b1-d149bd5185a2)
 
-📋 Project Overview
-Inspired by the research paper "In-vitro and rapid identification of patients with type 2 diabetes mellitus by Raman spectroscopy," this project replicates and expands upon the use of machine learning for diabetes detection. After rigorous preprocessing of the Raman spectra, a neural network with regularization techniques was trained to distinguish between diabetic and non-diabetic individuals. The final model achieves high accuracy and excellent clinical relevance.
+🔷 Project Objective:
+This project analyzes Raman spectroscopy data to develop a predictive model for the rapid and non-invasive identification of patients with Type 2 Diabetes Mellitus (DM2). The primary goal is to build an accurate and reliable classification model that can distinguish between diabetic and non-diabetic individuals based on their Raman spectra.
 
-✨ Key Features
-Data Preprocessing: Implements area normalization to correct for variations in sample measurements and standardization to prevent feature dominance.
+🌟 Key Skills & Tools
+Data Cleaning & Manipulation: Pandas, NumPy
 
-Baseline Modeling: Establishes a strong baseline with a Logistic Regression model, achieving 87.5% accuracy.
+Data Visualization: Matplotlib
 
-Neural Network Development: Builds and iteratively improves a neural network by tuning the learning rate and incorporating dropout layers to mitigate overfitting.
+Machine Learning: Scikit-learn (Train-Test Split, StandardScaler, Logistic Regression), TensorFlow/Keras (Sequential API, Dense Layers, Dropout, Early Stopping)
 
-Performance: The final model achieves a validation accuracy of 93.75%.
+Core Competencies: Exploratory Data Analysis (EDA), Data Preprocessing (Area Normalization), Predictive Modeling, Hyperparameter Tuning, Model Evaluation.
 
-Clinical Relevance: The model demonstrates a perfect recall of 1.00 for the 'Diabetic' class, making it a promising tool for medical screening as it correctly identifies all diabetic patients in the test set.
+🌿 Analysis & Key Findings
+The analysis involved a comprehensive EDA, the establishment of a strong baseline model, and the iterative development of a neural network to achieve high predictive accuracy and clinical relevance.
 
-📊 Dataset
-The dataset used in this project is publicly available from the publisher's website and is based on Raman spectra collected from the earlobes of patients. It consists of Raman intensity readings at different wavenumbers, with a binary label indicating the patient's diabetes status (1 for diabetic, 0 for non-diabetic).
+Foundational Analysis & Preprocessing:
+A key challenge was the inherent variability in spectroscopy measurements. This was addressed by implementing area normalization to standardize the spectra and correct for sample-to-sample variations.
 
-🔬 Methodology
-Exploratory Data Analysis (EDA): The project begins with an analysis of the class distribution, revealing a slight imbalance between diabetic and non-diabetic samples. The average Raman spectra for both classes are plotted to identify potential distinguishing features.
+EDA revealed subtle but potentially significant differences in the average Raman spectra between diabetic and non-diabetic individuals, particularly around the 1350 cm-1 and 1380 cm-1 Raman shifts.
 
-Preprocessing:
+Model Development & Selection:
+A Logistic Regression model was first developed to establish a baseline, achieving a strong accuracy of 87.5%.
 
-Area Normalization: Each spectrum is normalized by its total area to correct for variations in laser intensity and sample concentration between measurements.
+A neural network was then built and iteratively improved. The introduction of dropout layers was the most critical enhancement, mitigating overfitting and boosting the model's performance.
 
-Standardization: The StandardScaler from scikit-learn is used to standardize each feature (wavenumber) across all samples, ensuring that all features are given equal importance by the model.
+Final Model Performance:
+The final, tuned neural network demonstrates excellent predictive power, achieving an overall accuracy of 93.75% on unseen test data.
 
-Modeling:
+The model's standout feature is its perfect recall of 1.00 for the 'Diabetic' class, as shown in the confusion matrix. This means it correctly identified all diabetic patients in the test set, making it a highly reliable screening tool.
 
-A Logistic Regression model is first trained to establish a baseline performance.
+💡 Clinical Application
+Non-Invasive Screening: Offering a rapid and non-invasive method for diabetes screening using a simple Raman scan of the earlobe, replacing the need for blood tests in initial screenings.
 
-A Neural Network is then built using TensorFlow/Keras. The model is improved through the following steps:
+Early Detection: Providing a highly sensitive tool for early detection, as the model is exceptionally good at identifying diabetic individuals (zero false negatives in the test set).
 
-Learning Rate Tuning: A learning rate scheduler is used to find the optimal learning rate.
-
-Dropout Regularization: Dropout layers are added to prevent the model from overfitting the training data.
-
-Early Stopping: An early stopping callback is implemented to halt training when the validation loss stops improving, ensuring the model generalizes well to unseen data.
-
-🏆 Results
-The final model, a neural network with two dense layers and dropout, achieved the following performance on the test set:
-
-Validation Accuracy: 93.75%
-
-Recall (Diabetic Class): 1.00
-
-Precision (Diabetic Class): 0.90
-
-The model's perfect recall for the diabetic class is particularly noteworthy, as it indicates that the model is highly effective at identifying all positive cases, a critical requirement for a medical screening tool. The ROC curve and a high AUC score further validate the model's excellent discriminative ability.
+Point-of-Care Diagnostics: With the use of portable Raman spectrometers, this model could be deployed in clinics for on-the-spot risk assessment, allowing for immediate patient consultation and follow-up.
