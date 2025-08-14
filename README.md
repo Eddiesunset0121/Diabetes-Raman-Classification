@@ -1,5 +1,7 @@
 # Project: Diabetes Classification with Raman Spectroscopy
 
+<img width="430" height="429" alt="{1C97E4D6-97FC-44AC-9851-293B583356D3}" src="https://github.com/user-attachments/assets/8474a48e-b863-4673-a0ae-c26f33f621ea" />
+
 🔷 Project Objective:
 - Inspired by the paper "In-vitro and rapid identification of patients with type 2 diabetes mellitus by Raman spectroscopy".
 https://opg.optica.org/boe/fulltext.cfm?uri=boe-9-10-4998&id=398623
