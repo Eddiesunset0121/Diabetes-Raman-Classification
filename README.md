@@ -10,7 +10,7 @@ https://opg.optica.org/boe/fulltext.cfm?uri=boe-9-10-4998&id=398623
 - Tensorflow for deep learning
 
 🌿 Analysis & Key Findings
-- Ccomprehensive EDA, the establishment of a strong baseline model, and the iterative development of a neural network to achieve high predictive accuracy and clinical relevance.
+- Comprehensive EDA, the establishment of a strong baseline model, and the iterative development of a neural network to achieve high predictive accuracy and clinical relevance.
 
 🌿 Foundational Analysis & Preprocessing:
 - Key challenge: inherent variability in spectroscopy measurements. This was addressed by implementing area normalization to standardize the spectra and correct for sample-to-sample variations.
