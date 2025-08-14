@@ -7,15 +7,13 @@ https://opg.optica.org/boe/fulltext.cfm?uri=boe-9-10-4998&id=398623
 This project analyzes Raman spectroscopy data to develop a predictive model for the rapid and non-invasive identification of patients with Type 2 Diabetes Mellitus (DM2). The primary goal is to build an accurate and reliable classification model that can distinguish between diabetic and non-diabetic individuals based on their Raman spectra.
 
 🌟 Key Skills & Tools
-Data Cleaning & Manipulation: Pandas, NumPy
-
-Data Visualization: Matplotlib
+Tensorflow for deep learning
 
 🌿 Analysis & Key Findings
-The analysis involved a comprehensive EDA, the establishment of a strong baseline model, and the iterative development of a neural network to achieve high predictive accuracy and clinical relevance.
+Ccomprehensive EDA, the establishment of a strong baseline model, and the iterative development of a neural network to achieve high predictive accuracy and clinical relevance.
 
 🌿 Foundational Analysis & Preprocessing:
-A key challenge was the inherent variability in spectroscopy measurements. This was addressed by implementing area normalization to standardize the spectra and correct for sample-to-sample variations.
+Key challenge: inherent variability in spectroscopy measurements. This was addressed by implementing area normalization to standardize the spectra and correct for sample-to-sample variations.
 
 EDA revealed subtle but potential differences in the average Raman spectra between diabetic and non-diabetic individuals, particularly around the 1350 cm-1 and 1380 cm-1 Raman shifts.
 
