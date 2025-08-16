@@ -1,6 +1,6 @@
 # Project: Diabetes Classification with Raman Spectroscopy
 
-<img width="916" height="507" alt="{221A1D82-8BED-446B-8789-9921FEAD4EAF}" src="https://github.com/user-attachments/assets/da0f548c-5742-4912-9e83-d9778097e888" />
+<img width="1380" height="1100" alt="Flowchart" src="https://github.com/user-attachments/assets/73e96eda-0e0f-4ae1-9578-185b64a39af8" />
 
 
 🔷 Project Objective:
