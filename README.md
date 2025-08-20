@@ -8,7 +8,7 @@ The repository is organized as follows:
 - **/notebooks**: Contains the Jupyter Notebook with the main analysis.
 - **/src**: Contains helper functions and scripts.
 
-##🔷 Project Outline:
+## Project Outline:
 - Inspired by the paper "In-vitro and rapid identification of patients with type 2 diabetes mellitus by Raman spectroscopy".
 https://opg.optica.org/boe/fulltext.cfm?uri=boe-9-10-4998&id=398623
 
