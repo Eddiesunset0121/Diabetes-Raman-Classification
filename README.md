@@ -14,6 +14,7 @@ https://opg.optica.org/boe/fulltext.cfm?uri=boe-9-10-4998&id=398623
 
 - This project analyzes Raman spectroscopy data to develop a predictive model for the rapid and non-invasive identification of patients with Type 2 Diabetes Mellitus (DM2). The primary goal is to build an accurate and reliable classification model that can distinguish between diabetic and non-diabetic individuals based on their Raman spectra.
 
+## Project Detail:
 🌟 Key Skills & Tools
 - Tensorflow for deep learning
 
