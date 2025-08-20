@@ -2,6 +2,11 @@
 
 <img width="1380" height="1100" alt="Flowchart" src="https://github.com/user-attachments/assets/73e96eda-0e0f-4ae1-9578-185b64a39af8" /> Model iteration pipeline
 
+## Project Structure
+The repository is organized as follows:
+- **/data/raw**: Contains the original, raw datasets.
+- **/notebooks**: Contains the Jupyter Notebook with the main analysis.
+- **/src**: Contains helper functions and scripts.
 
 🔷 Project Objective:
 - Inspired by the paper "In-vitro and rapid identification of patients with type 2 diabetes mellitus by Raman spectroscopy".
