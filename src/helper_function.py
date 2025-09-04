@@ -195,10 +195,15 @@ def calculate_results(y_true, y_pred) -> Dict[str, float]:
                      "f1": model_f1}
     return model_results
 
-def make_confusion_matrix(y_true, y_pred, classes: List[str] = None, figsize: Tuple[int, int] = (10, 10), text_size: int = 15):
+def make_confusion_matrix(y_true, y_pred, classes: List[str] = None, figsize: Tuple[int, int] = (10, 10), text_size: int = 15, normalize: bool = False):
     """Makes a labelled confusion matrix comparing predictions and ground truth labels."""
     cm = confusion_matrix(y_true, y_pred)
     n_classes = cm.shape[0]
+
+    # ADDED: Normalization step
+    if normalize:
+        # Calculate percentages instead of raw counts
+        cm = np.around(cm.astype('float') / cm.sum(axis=1)[:, np.newaxis], decimals=2)
 
     fig, ax = plt.subplots(figsize=figsize)
     cax = ax.matshow(cm, cmap=plt.cm.Blues)
@@ -216,16 +221,19 @@ def make_confusion_matrix(y_true, y_pred, classes: List[str] = None, figsize: Tu
     
     ax.xaxis.set_label_position("bottom")
     ax.xaxis.tick_bottom()
-    plt.xticks(rotation=70, fontsize=text_size) # REFINED: Rotated labels for better visibility
+    plt.xticks(rotation=90, fontsize=text_size)
     plt.yticks(fontsize=text_size)
 
-    threshold = (cm.max() + cm.min()) / 2.
+    # Determine the format string for the text based on normalization
+    fmt = ".2f" if normalize else "d"
+    threshold = cm.max() / 2.
+
     for i, j in itertools.product(range(cm.shape[0]), range(cm.shape[1])):
-        plt.text(j, i, f"{cm[i, j]}",
+        plt.text(j, i, format(cm[i, j], fmt),
                  horizontalalignment="center",
                  color="white" if cm[i, j] > threshold else "black",
                  size=text_size)
-    plt.show() # REFINED: Added plt.show() to display the plot reliably
+    plt.show()
 
 def pred_and_plot(model: tf.keras.Model, filename: str, class_names: List[str]):
     """Imports an image, makes a prediction, and plots the result."""
