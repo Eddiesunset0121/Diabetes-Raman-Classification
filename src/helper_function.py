@@ -296,4 +296,4 @@ def generate_grad_cam_1d(model, spectrum, class_index, layer_name):
     # 8. Upsample the heatmap to match the original spectrum length
     #    We need to use reshape because tf.image.resize expects 3D/4D tensors
     heatmap_resized = tf.image.resize(heatmap[tf.newaxis, :, tf.newaxis],
-                                      [spectrum.shape[1]],
+                                      [spectrum.shape[1]])
