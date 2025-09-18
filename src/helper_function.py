@@ -51,10 +51,10 @@ def create_data_pipelines(train_dir: str, test_dir: str, batch_size: int = 32, i
     Argumentations include:
         image_resize = (224,224),
         image_rescale = 1/255.,
-        define batch, 
+        define batch,
         one-hot encode labels based on num_claases (binary or multi-class),
         random: flip, rotation, zoom
-    Returns: 
+    Returns:
         argumanted training and test sets
     """
     # 1. Detect number of classes and set the label_mode
@@ -91,9 +91,9 @@ def create_data_pipelines(train_dir: str, test_dir: str, batch_size: int = 32, i
 
     # 4. Build the performant pipelines
     # For training data, apply rescaling and augmentation
-    # When you create a dataset using tf.keras.utils.image_dataset_from_directory, 
+    # When you create a dataset using tf.keras.utils.image_dataset_from_directory,
     # it structures your data into a sequence of pairs. Each pair is a tuple: (images, labels) = train_data.
-    # (images, labels).map(function:iterable) 
+    # (images, labels).map(function:iterable)
     # function, iterable = lambda x, y: (data_augmentation(x, training=True), y
     # x = images, y = labels
     # map x, y --> (data_augmentation(x, training=True), y
@@ -121,7 +121,7 @@ def view_random_image(target_dir: str, target_class: str):
     """Views a random image from a target class in a target directory."""
     target_folder = os.path.join(target_dir, target_class)
     random_image_path = os.path.join(target_folder, random.choice(os.listdir(target_folder)))
-    
+
     img = mpimg.imread(random_image_path)
     plt.imshow(img)
     plt.title(f"{target_class} (shape: {img.shape})")
@@ -137,10 +137,10 @@ def create_generalized_model(input_shape: Tuple[int, int, int], num_classes: int
     base_model.trainable = False
     x = base_model(inputs, training=False)
     x = tf.keras.layers.GlobalAveragePooling2D(name="global_average_pooling")(x)
-    
+
     activation = 'softmax' if num_classes > 2 else 'sigmoid'
     output_unit = num_classes if num_classes > 2 else 1
-    
+
     outputs = tf.keras.layers.Dense(output_unit, activation=activation, name="output_layer")(x)
     model = tf.keras.Model(inputs, outputs)
     return model
@@ -158,21 +158,21 @@ def plot_loss_curves(history: tf.keras.callbacks.History):
     """Plots training & validation accuracy and loss curves from a History object."""
     df = pd.DataFrame(history.history)
     plt.figure(figsize=(12, 5))
-    
+
     plt.subplot(1, 2, 1)
     plt.plot(df['accuracy'], label="Training Accuracy")
     plt.plot(df['val_accuracy'], label="Validation Accuracy")
     plt.title("Accuracy")
-    plt.xlabel("Epochs") # FIX: Completed this line.
+    plt.xlabel("Epochs")
     plt.legend()
-    
+
     plt.subplot(1, 2, 2)
     plt.plot(df['loss'], label="Training Loss")
     plt.plot(df['val_loss'], label="Validation Loss")
     plt.title("Loss")
-    plt.xlabel("Epochs") # FIX: Completed this line.
+    plt.xlabel("Epochs")
     plt.legend()
-    
+
     plt.tight_layout()
     plt.show()
 
@@ -200,7 +200,6 @@ def make_confusion_matrix(y_true, y_pred, classes: List[str] = None, figsize: Tu
     cm = confusion_matrix(y_true, y_pred)
     n_classes = cm.shape[0]
 
-    # ADDED: Normalization step
     if normalize:
         # Calculate percentages instead of raw counts
         cm = np.around(cm.astype('float') / cm.sum(axis=1)[:, np.newaxis], decimals=2)
@@ -210,7 +209,7 @@ def make_confusion_matrix(y_true, y_pred, classes: List[str] = None, figsize: Tu
     fig.colorbar(cax)
 
     labels = classes if classes else np.arange(cm.shape[0])
-    
+
     ax.set(title="Confusion Matrix",
            xlabel="Predicted Label",
            ylabel="True Label",
@@ -218,7 +217,7 @@ def make_confusion_matrix(y_true, y_pred, classes: List[str] = None, figsize: Tu
            yticks=np.arange(n_classes),
            xticklabels=labels,
            yticklabels=labels)
-    
+
     ax.xaxis.set_label_position("bottom")
     ax.xaxis.tick_bottom()
     plt.xticks(rotation=90, fontsize=text_size)
@@ -240,7 +239,7 @@ def pred_and_plot(model: tf.keras.Model, filename: str, class_names: List[str]):
     img = load_and_prep_image(filename)
     pred_probs = model.predict(tf.expand_dims(img, axis=0))
     pred_class = class_names[tf.argmax(pred_probs[0])]
-    
+
     plt.imshow(img)
     plt.title(f"Prediction: {pred_class}")
     plt.axis("off")
@@ -295,5 +294,9 @@ def generate_grad_cam_1d(model, spectrum, class_index, layer_name):
 
     # 8. Upsample the heatmap to match the original spectrum length
     #    We need to use reshape because tf.image.resize expects 3D/4D tensors
+    # FIX: Added the closing parenthesis and corrected the size argument for 1D-like data.
     heatmap_resized = tf.image.resize(heatmap[tf.newaxis, :, tf.newaxis],
-                                      [spectrum.shape[1]])
+                                      [spectrum.shape[1], 1])
+    
+    # Squeeze the extra dimension added by resize to return a 1D tensor
+    return tf.squeeze(heatmap_resized)
